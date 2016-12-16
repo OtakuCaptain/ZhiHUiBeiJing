@@ -7,7 +7,7 @@
 
 
     <ImageView
-        android:src="@drawable/splash_horse_newyear"
+        android:src="@mipmap/splash_horse_newyear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
          />
