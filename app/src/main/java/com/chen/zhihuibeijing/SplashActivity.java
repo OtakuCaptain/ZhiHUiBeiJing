@@ -1,6 +1,7 @@
 package com.chen.zhihuibeijing;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -30,7 +31,7 @@ public class SplashActivity extends Activity {
         rotateAnimation.setDuration(1000);//旋转时间
         rotateAnimation.setFillAfter(true);//保持结束状态
 
-        ScaleAnimation scaleAnimation = new ScaleAnimation(0, 1, 0, 1, Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
+        ScaleAnimation scaleAnimation = new ScaleAnimation(0, 1, 0, 1, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         scaleAnimation.setDuration(1000);
         scaleAnimation.setFillAfter(true);
 
@@ -38,7 +39,7 @@ public class SplashActivity extends Activity {
         alphaAnimation.setDuration(1000);
         alphaAnimation.setFillAfter(true);
 
-        AnimationSet animationSet =new AnimationSet(true);
+        AnimationSet animationSet = new AnimationSet(true);
         animationSet.addAnimation(rotateAnimation);
         animationSet.addAnimation(scaleAnimation);
         animationSet.addAnimation(alphaAnimation);
@@ -46,6 +47,8 @@ public class SplashActivity extends Activity {
         llRoot.startAnimation(animationSet);
 
         animationSet.setAnimationListener(new Animation.AnimationListener() {
+            private Intent intent;
+
             @Override
             public void onAnimationStart(Animation animation) {
 
@@ -55,13 +58,18 @@ public class SplashActivity extends Activity {
             public void onAnimationEnd(Animation animation) {
 
                 boolean isFirstEnter = PrefUtil.getBoolean(getApplicationContext(), "is_first_enter", true);
-                if(isFirstEnter){
+                if (isFirstEnter) {
                     //进入新手引导界面
 
-                }else {
+                    intent = new Intent(getApplicationContext(), GuideActivity.class);
+
+                } else {
                     //进入主界面
 
+                    intent = new Intent(getApplicationContext(), MainActivity.class);
                 }
+                startActivity(intent);
+                finish();
             }
 
             @Override
