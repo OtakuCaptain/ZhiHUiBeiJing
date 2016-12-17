@@ -1,5 +1,6 @@
 package com.chen.zhihuibeijing;
 
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -9,9 +10,12 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+
+import com.chen.zhihuibeijing.util.PrefUtil;
 
 import java.util.ArrayList;
 
@@ -24,6 +28,7 @@ public class GuideActivity extends AppCompatActivity {
     private LinearLayout llContainer;
     private ImageView ivRedPoint;
     private int mPointDis;
+    private Button btnStart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,7 @@ public class GuideActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.vp_guide);
         llContainer = (LinearLayout) findViewById(R.id.ll_container);
         ivRedPoint = (ImageView) findViewById(R.id.iv_red_point);
+        btnStart= (Button) findViewById(R.id.btn_start);
         initData();
         mViewPager.setAdapter(new GuideAdapter());
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -46,6 +52,11 @@ public class GuideActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
+                if (position==mImageViewList.size()-1){
+                    btnStart.setVisibility(View.VISIBLE);//最后一页显示开始按钮
+                }else {
+                    btnStart.setVisibility(View.INVISIBLE);
+                }
             }
 
             @Override
@@ -61,6 +72,18 @@ public class GuideActivity extends AppCompatActivity {
 
                 //layout方法执行结束后的回调
                 mPointDis = llContainer.getChildAt(1).getLeft() - llContainer.getChildAt(0).getLeft();
+            }
+        });
+
+        btnStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //更新sp
+                PrefUtil.setBoolean(getApplication(),"is_first_enter",false);
+                //跳转主页面
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
