@@ -9,18 +9,18 @@ import android.widget.TextView;
 import com.chen.zhihuibeijing.base.BasePager;
 
 
-
-public class HomePager extends BasePager {
-    public HomePager(Activity activity) {
+public class SmartServicePager extends BasePager {
+    public SmartServicePager(Activity activity) {
         super(activity);
     }
 
     //给帧布局填充对象
     @Override
     public void initData() {
-        Log.i("Pager","首页初始化了");
+        Log.i("Pager","智慧服务初始化了");
+
         TextView textView = new TextView(mActivity);
-        textView.setText("首页");
+        textView.setText("智慧服务");
         textView.setTextColor(Color.RED);
         textView.setGravity(Gravity.CENTER);
 
