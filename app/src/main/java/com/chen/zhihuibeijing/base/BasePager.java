@@ -8,9 +8,6 @@ import android.widget.TextView;
 
 import com.chen.zhihuibeijing.R;
 
-/**
- * Created by chen on 2016-12-17.
- */
 
 public class BasePager {
 

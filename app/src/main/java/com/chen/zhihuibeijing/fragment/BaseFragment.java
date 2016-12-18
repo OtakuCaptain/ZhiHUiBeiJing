@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.chen.zhihuibeijing.MainActivity;
+
 
 public abstract class BaseFragment extends Fragment {
 
@@ -23,8 +25,7 @@ public abstract class BaseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view =initView();
-        return view;
+        return initView();
     }
 
 

@@ -2,10 +2,13 @@ package com.chen.zhihuibeijing.base.impl;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.TextView;
 
+import com.chen.zhihuibeijing.MainActivity;
 import com.chen.zhihuibeijing.base.BasePager;
 
 
@@ -25,6 +28,7 @@ public class SettingPager extends BasePager {
 
         //给帧布局动态添加
         flContent.addView(textView);
+        btnMenu.setVisibility(View.GONE);
 
     }
 }

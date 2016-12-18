@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <include layout="@layout/title_bar" />
+    <!--<include layout="@layout/toolbar"/>-->
 
     <FrameLayout
         android:id="@+id/fl_content"

@@ -1,11 +1,15 @@
 package com.chen.zhihuibeijing.fragment;
 
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.RadioGroup;
 
+import com.chen.zhihuibeijing.MainActivity;
 import com.chen.zhihuibeijing.R;
 import com.chen.zhihuibeijing.base.BasePager;
 import com.chen.zhihuibeijing.base.impl.GovAffairsPager;
@@ -17,11 +21,15 @@ import com.chen.zhihuibeijing.view.NoScrollViewPager;
 
 import java.util.ArrayList;
 
+import static com.chen.zhihuibeijing.R.id.btn_menu;
+import static com.chen.zhihuibeijing.R.id.rb_home;
+
 public class ContentFragment extends BaseFragment {
 
     private NoScrollViewPager mViewPager;
     private ArrayList<BasePager> mPagers;
     private RadioGroup rgGroup;
+    private MainActivity mainActivity;
 
     @Override
     public View initView() {
@@ -29,17 +37,19 @@ public class ContentFragment extends BaseFragment {
         rgGroup = (RadioGroup) view.findViewById(R.id.rg_group);
         mViewPager = (NoScrollViewPager) view.findViewById(R.id.vp_content);
         return view;
+
     }
 
     @Override
     public void initData() {
-        mPagers = new ArrayList<BasePager>();
+        mPagers = new ArrayList<>();
         mPagers.add(new HomePager(mActivity));
         mPagers.add(new NewsCenterPager(mActivity));
         mPagers.add(new SmartServicePager(mActivity));
         mPagers.add(new GovAffairsPager(mActivity));
         mPagers.add(new SettingPager(mActivity));
         mViewPager.setAdapter(new ContentAdapter());
+
 
         rgGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -61,12 +71,12 @@ public class ContentFragment extends BaseFragment {
                     case R.id.rb_setting:
                         mViewPager.setCurrentItem(4);
                         break;
-
                 }
             }
         });
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -74,8 +84,9 @@ public class ContentFragment extends BaseFragment {
 
             @Override
             public void onPageSelected(int position) {
-                BasePager pager=mPagers.get(position);
-                switch (position){
+                BasePager pager = mPagers.get(position);
+                pager.initData();
+                switch (position) {
                     case 0:
                         rgGroup.check(R.id.rb_home);
                         break;
@@ -92,19 +103,30 @@ public class ContentFragment extends BaseFragment {
                         rgGroup.check(R.id.rb_setting);
                         break;
                 }
-                pager.initData();
-
+                if (position == 0 || position == mPagers.size() - 1) {
+                    setDrawerLayoutEnable(false);
+                } else {
+                    setDrawerLayoutEnable(true);
+                }
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         });
         //手动加载第一页数据
         mPagers.get(0).initData();
+        setDrawerLayoutEnable(false);
 
+    }
 
+    private void setDrawerLayoutEnable(boolean enable) {
+        mainActivity = (MainActivity) mActivity;
+        if (enable) {
+            mainActivity.mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+        } else {
+            mainActivity.mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        }
     }
 
     class ContentAdapter extends PagerAdapter {
