@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.widget.ListView;
 
 
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.dl_drwaer_layout);
         mLvLeftMenu = (ListView) findViewById(R.id.lv_nav_left);
+        LayoutInflater inflater = LayoutInflater.from(this);
+        mLvLeftMenu.addHeaderView(inflater.inflate(R.layout.nav_header, mLvLeftMenu, false));
         initFragment();
 
     }

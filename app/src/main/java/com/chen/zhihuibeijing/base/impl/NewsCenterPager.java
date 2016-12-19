@@ -51,7 +51,6 @@ public class NewsCenterPager extends BasePager {
         }
         getDataFromServer();
 
-
     }
 
     private void getDataFromServer() {
@@ -84,8 +83,7 @@ public class NewsCenterPager extends BasePager {
         Log.i("Pager", String.valueOf(newsMenu));
 
 //    private void setUpDrawer() {
-        LayoutInflater inflater = LayoutInflater.from(mActivity);
-        mActivity.mLvLeftMenu.addHeaderView(inflater.inflate(R.layout.nav_header, mActivity.mLvLeftMenu, false));
+
 
 //    }
 
