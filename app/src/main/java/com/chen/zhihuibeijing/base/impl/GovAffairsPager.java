@@ -12,7 +12,7 @@ import com.chen.zhihuibeijing.base.BasePager;
 
 
 public class GovAffairsPager extends BasePager {
-    public GovAffairsPager(Activity activity) {
+    public GovAffairsPager(MainActivity activity) {
         super(activity);
     }
 
@@ -27,6 +27,7 @@ public class GovAffairsPager extends BasePager {
 
         //给帧布局动态添加
         flContent.addView(textView);
+
 
     }
 }

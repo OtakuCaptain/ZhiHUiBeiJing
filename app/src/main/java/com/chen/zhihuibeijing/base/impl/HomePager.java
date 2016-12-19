@@ -13,7 +13,7 @@ import com.chen.zhihuibeijing.base.BasePager;
 
 
 public class HomePager extends BasePager {
-    public HomePager(Activity activity) {
+    public HomePager(MainActivity activity) {
         super(activity);
     }
 

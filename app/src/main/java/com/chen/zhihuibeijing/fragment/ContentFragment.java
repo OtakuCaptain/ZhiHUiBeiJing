@@ -21,8 +21,6 @@ import com.chen.zhihuibeijing.view.NoScrollViewPager;
 
 import java.util.ArrayList;
 
-import static com.chen.zhihuibeijing.R.id.btn_menu;
-import static com.chen.zhihuibeijing.R.id.rb_home;
 
 public class ContentFragment extends BaseFragment {
 
@@ -37,17 +35,16 @@ public class ContentFragment extends BaseFragment {
         rgGroup = (RadioGroup) view.findViewById(R.id.rg_group);
         mViewPager = (NoScrollViewPager) view.findViewById(R.id.vp_content);
         return view;
-
     }
 
     @Override
     public void initData() {
         mPagers = new ArrayList<>();
-        mPagers.add(new HomePager(mActivity));
-        mPagers.add(new NewsCenterPager(mActivity));
-        mPagers.add(new SmartServicePager(mActivity));
-        mPagers.add(new GovAffairsPager(mActivity));
-        mPagers.add(new SettingPager(mActivity));
+        mPagers.add(new HomePager((MainActivity) mActivity));
+        mPagers.add(new NewsCenterPager((MainActivity) mActivity));
+        mPagers.add(new SmartServicePager((MainActivity) mActivity));
+        mPagers.add(new GovAffairsPager((MainActivity) mActivity));
+        mPagers.add(new SettingPager((MainActivity) mActivity));
         mViewPager.setAdapter(new ContentAdapter());
 
 
@@ -117,7 +114,6 @@ public class ContentFragment extends BaseFragment {
         //手动加载第一页数据
         mPagers.get(0).initData();
         setDrawerLayoutEnable(false);
-
     }
 
     private void setDrawerLayoutEnable(boolean enable) {

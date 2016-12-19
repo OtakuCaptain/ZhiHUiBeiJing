@@ -5,6 +5,6 @@ package com.chen.zhihuibeijing.global;
  */
 
 public class GlobalConstants {
-    public static final String SERVER_URL = "http://192.168.2.102:8080/zhbj";
+    public static final String SERVER_URL = "http://192.168.1.114:8080/zhbj";
     public static final String CATEGORY_URL = SERVER_URL + "/categories.json";
 }

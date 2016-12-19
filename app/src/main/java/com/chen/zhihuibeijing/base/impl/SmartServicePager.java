@@ -12,7 +12,7 @@ import com.chen.zhihuibeijing.base.BasePager;
 
 
 public class SmartServicePager extends BasePager {
-    public SmartServicePager(Activity activity) {
+    public SmartServicePager(MainActivity activity) {
         super(activity);
     }
 

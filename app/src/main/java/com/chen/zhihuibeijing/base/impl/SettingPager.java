@@ -13,7 +13,7 @@ import com.chen.zhihuibeijing.base.BasePager;
 
 
 public class SettingPager extends BasePager {
-    public SettingPager(Activity activity) {
+    public SettingPager(MainActivity activity) {
         super(activity);
     }
 
