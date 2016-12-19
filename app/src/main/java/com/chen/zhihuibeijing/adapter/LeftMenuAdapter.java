@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,21 +22,29 @@ import java.util.ArrayList;
 
 public class LeftMenuAdapter extends BaseAdapter {
 
-    private ImageView image;
-
-    private TextView text;
-
     private ArrayList<NewsMenu.NewsMenuData> data;
 
     private LayoutInflater layoutInflater;
-
     private Context context;
+    public int mCurrentPositon;
 
-    public LeftMenuAdapter(Context context, ArrayList<NewsMenu.NewsMenuData> data) {
+    public LeftMenuAdapter(final MainActivity mainActivity, ArrayList<NewsMenu.NewsMenuData> data) {
 
-        this.context = context;
+        this.context = mainActivity;
         this.data = data;
         this.layoutInflater = LayoutInflater.from(context);
+        mainActivity.mLvLeftMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mainActivity.mDrawerLayout.closeDrawers();
+                mCurrentPositon=position-1;
+                Refresh();
+            }
+        });
+    }
+
+    private void Refresh(){
+        this.notifyDataSetChanged();
     }
 
     @Override
@@ -60,6 +69,11 @@ public class LeftMenuAdapter extends BaseAdapter {
         TextView leftMenu = (TextView) view.findViewById(R.id.tv_left);
         NewsMenu.NewsMenuData item = getItem(position);
         leftMenu.setText(item.title);
+        if (position==mCurrentPositon){
+            leftMenu.setEnabled(true);
+        }else {
+            leftMenu.setEnabled(false);
+        }
         return view;
     }
 }
