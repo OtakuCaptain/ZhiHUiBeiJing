@@ -20,7 +20,7 @@ public class NoScrollViewPager extends ViewPager {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        //重写方法，触摸式啥都不做，从而实现滑动禁用
+        //重写方法，触摸时啥都不做，从而实现滑动禁用
         return true;
     }
 }

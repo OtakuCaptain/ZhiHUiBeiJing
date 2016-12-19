@@ -6,25 +6,32 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chen.zhihuibeijing.MainActivity;
+import com.chen.zhihuibeijing.R;
+import com.chen.zhihuibeijing.adapter.LeftMenuAdapter;
 import com.chen.zhihuibeijing.base.BasePager;
 import com.chen.zhihuibeijing.domain.NewsMenu;
+import com.chen.zhihuibeijing.fragment.LeftMenuFragment;
 import com.chen.zhihuibeijing.global.GlobalConstants;
 import com.chen.zhihuibeijing.util.CacheUtil;
 import com.chen.zhihuibeijing.util.HttpUtil;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
 
+
 public class NewsCenterPager extends BasePager {
+
     public NewsCenterPager(MainActivity activity) {
         super(activity);
     }
@@ -73,8 +80,16 @@ public class NewsCenterPager extends BasePager {
 
     private void processData(String json) {
         Gson gson = new Gson();
-        NewsMenu newsMenu = gson.fromJson(json, NewsMenu.class);
+        NewsMenu newsMenu =  gson.fromJson(json, NewsMenu.class);
         Log.i("Pager", String.valueOf(newsMenu));
+
+//    private void setUpDrawer() {
+        LayoutInflater inflater = LayoutInflater.from(mActivity);
+        mActivity.mLvLeftMenu.addHeaderView(inflater.inflate(R.layout.nav_header, mActivity.mLvLeftMenu, false));
+
+//    }
+
+        mActivity.mLvLeftMenu.setAdapter(new LeftMenuAdapter(mActivity,newsMenu.data));
     }
 
 }

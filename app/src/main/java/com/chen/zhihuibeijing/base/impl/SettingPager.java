@@ -29,6 +29,7 @@ public class SettingPager extends BasePager {
         //给帧布局动态添加
         flContent.addView(textView);
         btnMenu.setVisibility(View.GONE);
+        tvTitle.setText("设置");
 
     }
 }

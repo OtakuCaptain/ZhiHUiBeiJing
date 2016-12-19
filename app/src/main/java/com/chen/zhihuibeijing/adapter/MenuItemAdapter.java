@@ -28,7 +28,7 @@ public class MenuItemAdapter extends BaseAdapter
         mInflater = LayoutInflater.from(context);
         mContext = context;
 
-//        mIconSize = context.getResources().getDimensionPixelSize(R.dimen.drawer_icon_size);//24dp
+//        mIconSize = context.getResources().getDimensionPixelSize();//24dp
     }
 
     private List<LvMenuItem> mItems = new ArrayList<>(

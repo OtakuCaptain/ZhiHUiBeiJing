@@ -27,6 +27,7 @@ public class GovAffairsPager extends BasePager {
 
         //给帧布局动态添加
         flContent.addView(textView);
+        tvTitle.setText("政务");
 
 
     }

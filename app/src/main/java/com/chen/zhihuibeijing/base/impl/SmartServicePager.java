@@ -28,6 +28,7 @@ public class SmartServicePager extends BasePager {
 
         //给帧布局动态添加
         flContent.addView(textView);
+        tvTitle.setText("智慧服务");
 
     }
 }
